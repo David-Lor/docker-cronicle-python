@@ -1,6 +1,6 @@
 # # BUILD STEP # #
 FROM node:18-bullseye AS builder
-ENV CRONICLE_VERSION=0.9.80
+ENV CRONICLE_VERSION=0.9.83
 WORKDIR /opt/cronicle
 RUN curl -L -o /tmp/Cronicle-${CRONICLE_VERSION}.tar.gz https://github.com/jhuckaby/Cronicle/archive/refs/tags/v${CRONICLE_VERSION}.tar.gz
 RUN tar zxvf /tmp/Cronicle-${CRONICLE_VERSION}.tar.gz -C /tmp/ && \
