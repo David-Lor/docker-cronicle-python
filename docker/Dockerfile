@@ -13,11 +13,11 @@ COPY docker-entrypoint.js ./bin/
 
 
 # # FINAL IMAGE # #
-FROM python:3.13-alpine
+FROM python:3.13
 ARG USERNAME=cronicle
 
 # Install requirements & additional reqs for Chrome (https://pptr.dev/troubleshooting#chrome-doesnt-launch-on-linux)
-RUN apk update --no-cache && apk add --no-cache procps curl bash nodejs \
+RUN apt-get update && apt-get install -y --no-install-recommends procps curl bash nodejs \
 		ca-certificates \
     fonts-liberation \
     libasound2 \
@@ -53,8 +53,9 @@ RUN apk update --no-cache && apk add --no-cache procps curl bash nodejs \
     libxtst6 \
     lsb-release \
     wget \
-    xdg-utils
-RUN addgroup ${USERNAME} && adduser ${USERNAME} -D -G ${USERNAME} --shell=/bin/bash
+    xdg-utils \
+    && rm -rf /var/lib/apt/lists/*
+RUN useradd -ms /bin/bash ${USERNAME}
 
 COPY --from=builder --chown=${USERNAME}:${USERNAME} /opt/cronicle/ /opt/cronicle/
 
