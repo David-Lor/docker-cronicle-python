@@ -1,6 +1,6 @@
 # # BUILD STEP # #
-FROM node:22 AS builder
-ENV CRONICLE_VERSION=0.9.134
+FROM node:20 AS builder
+ENV CRONICLE_VERSION=0.9.123
 
 WORKDIR /opt/cronicle
 RUN curl -L -o /tmp/Cronicle-${CRONICLE_VERSION}.tar.gz https://github.com/jhuckaby/Cronicle/archive/refs/tags/v${CRONICLE_VERSION}.tar.gz
