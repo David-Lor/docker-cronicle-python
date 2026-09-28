@@ -55,6 +55,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends procps curl bas
     lsb-release \
     wget \
     xdg-utils \
+    adb \
     && rm -rf /var/lib/apt/lists/*
 RUN useradd -ms /bin/bash ${USERNAME}
 
